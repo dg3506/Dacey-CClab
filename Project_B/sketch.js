@@ -1,7 +1,7 @@
 let car;
 let goingBack = [];
 let goingFront = [];
-let limit = 12;
+let limit = 8;
 let timer = 0;
 let laps = 0;
 let gameOver = false;
@@ -55,6 +55,7 @@ function draw() {
    for(let i = 0; i < goingBack.length; i++) {
       if(goingBack[i].x < -30)
         goingBack.shift();
+      
 
       if(goingBack[i].x < car.x + 35 && 
          goingBack[i].x + 35 > car.x &&
@@ -64,12 +65,13 @@ function draw() {
 
       goingBack[i].update();
       goingBack[i].display();
+         
     }
 
     for(let i = 0; i < goingFront.length; i++) {
       if(goingFront[i].x > width)
         goingFront.shift();
-
+      
     if(goingFront[i].x < car.x + 35 && 
        goingFront[i].x + 35 > car.x &&
        goingFront[i].y < car.y + 25 &&
@@ -78,11 +80,13 @@ function draw() {
 
       goingFront[i].update();
       goingFront[i].display();
+       
     }
 
-    if(laps == 3)
-      gameOver = true;  
-
+    if(laps == 3){
+      gameOver = true; 
+      document.getElementById("finalButton").style.display = "block";
+    }
     car.update(this);
     car.display();
   } else {
@@ -95,7 +99,7 @@ function drawGameOver() {
   drawBackground();
  
   b.size(100, 50);
-  b.position(width / 2 - 100 / 2, height / 2 - 50 / 2);
+  b.position(-width / 2 - 100 / 2, height / 2 - 50 / 2);
   b.mousePressed(() => {
     goingBack = [];
     goingFront = [];
@@ -127,16 +131,16 @@ class Car{
 }
   update(){
     if(keyIsDown(UP_ARROW)){
-      this.y = this.y-1
+      this.y = this.y-2
     }
     if(keyIsDown(RIGHT_ARROW)){
-      this.x = this.x+1
+      this.x = this.x+2
     }
     if(keyIsDown(DOWN_ARROW)){
-      this.y = this.y+1
+      this.y = this.y+2
     }
     if(keyIsDown(LEFT_ARROW)){
-      this.x = this.x-1
+      this.x = this.x-2
     }
     if(this.x > width){
       laps += 1
