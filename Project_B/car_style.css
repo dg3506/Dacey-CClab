@@ -5,6 +5,13 @@ html, body {
 canvas {
   display: block;
 }
+p{
+    color: rgb(175, 210, 241);
+}
+a{
+    color: rgb(137, 219, 235);
+}
 #finalButton{
+
   display:none;
 }
